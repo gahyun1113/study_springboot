@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gahyun">
+
+    <!-- SQL 쿼리를 정의하는 select 태그 -->
+    <select id="getCarOptionsCount" resultType="map" parameterType="map">
+        SELECT
+            CP_NAME AS '회사이름',
+                CAR_NAME AS '자동차이름',
+                DATE_YEAR AS '연식',
+                COUNT(`OPTION`) AS '옵션 갯수'
+        FROM
+            CAR_INFO CI
+                INNER JOIN
+            CAR_INFO_OPTIONS COP ON CI.CI_PK = COP.CI_FK
+                INNER JOIN
+            COMPANY CP ON CP.CP_PK = CI.CP_FK
+                INNER JOIN
+            CAR_NAME CN ON CN.CN_PK = CI.CN_FK
+                INNER JOIN
+            MODEL_YEAR MY ON MY.YEAR_PK = CI.YEAR_FK
+                INNER JOIN
+            OPTIONS OP ON OP.OP_PK = COP.OP_FK
+        GROUP BY
+            CP.CP_PK, CN.CN_PK, MY.YEAR_PK, CI.CI_PK;
+    </select>
+
+</mapper>
