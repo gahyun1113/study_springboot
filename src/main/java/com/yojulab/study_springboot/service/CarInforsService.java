@@ -19,11 +19,10 @@ public class CarInforsService {
 
 
     public Object getCarOptionsCount(Map dataMap) {
-        String sqlMapId = "gahyun.getCarOptionsCount";
+        String sqlMapId = "carcompany.getCarOptionsCount";
 
         Object result = sharedDao.getList(sqlMapId, dataMap);
 
-        System.out.println("rrrrrrrrrrrrrrrrrr"+result);
         return result;
     }
 

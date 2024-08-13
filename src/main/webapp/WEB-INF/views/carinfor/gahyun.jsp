@@ -20,10 +20,12 @@
 <table class="table">
     <thead>
     <tr>
+        <th>자동차ID</th>
         <th>회사이름</th>
         <th>자동차이름</th>
         <th>연식</th>
-        <th>옵션개수</th>
+        <th>옵션수</th>
+        <th>삭제</th>
     </tr>
     </thead>
     <tbody id="carTableBody">
@@ -32,10 +34,19 @@
         for (HashMap<String, Object> record : resultList) {
     %>
     <tr>
+        <td><%= record.get("자동차ID") %></td>
         <td><%= record.get("회사이름") %></td>
         <td><%= record.get("자동차이름") %></td>
         <td><%= record.get("연식") %></td>
-        <td><%= record.get("옵션 갯수") %></td>
+        <td><%= record.get("옵션수") %></td>
+        <td>
+            <form action="/carcompany/delete/<%= record.get("자동차ID") %>" method="post">
+                <button type="submit" class="btn btn-danger">삭제</button>
+            </form>
+
+            <button class="btn btn-primary">수정</button>
+            <button class="btn btn-secondary">상세</button>
+        </td>
     </tr>
     <%
         }
